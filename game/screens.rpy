@@ -1,11 +1,11 @@
-﻿# This file is in the public domain. Feel free to modify it as a basis
++str(ui_loc)"/﻿# This file is in the public domain. Feel free to modify it as a basis
 # for your own screens.
 
 # Note that many of these screens may be given additional arguments in the
 # future. The use of **kwargs in the parameter list ensures your code will
 # work in the future.
 
-    
+
 ##############################################################################
 # Say
 #
@@ -14,8 +14,8 @@
 screen say(who, what, side_image=None, two_window=False, CountWords = 0): #CountWords is just a counter used with the gag
 
     # Decide if we want to use the one-window or two-window variant.
-    
-    
+
+
     if not two_window:
         # The one window variant. Used for caption boxes
         window:
@@ -24,9 +24,9 @@ screen say(who, what, side_image=None, two_window=False, CountWords = 0): #Count
 
             pos (0.0,0.1) #(0.3,0.1)
             anchor (0.0,0.0)
-            
-            style "textbox" 
-            
+
+            style "textbox"
+
             id "textbox"
 
             has vbox:
@@ -36,121 +36,121 @@ screen say(who, what, side_image=None, two_window=False, CountWords = 0): #Count
                 text who id "who"
 
             text what id "what" color "#000000" font "CRIMFBRG.ttf"
-            #text what id "what" 
+            #text what id "what"
     else:
         # The two window variant. Used for character dialog
         # start gag code
-        if who == "Rogue" and R_Gag: 
+        if who == "Rogue" and R_Gag:
             $ CountWords = 1
-        elif who == "Kitty" and K_Gag: 
+        elif who == "Kitty" and K_Gag:
             $ CountWords = 1
-        elif who == "Emma" and E_Gag: 
+        elif who == "Emma" and E_Gag:
             $ CountWords = 1
-        elif who in ModdedGirls and newgirl[who].Gag: 
+        elif who in ModdedGirls and newgirl[who].Gag:
             $ CountWords = 1
         if CountWords == 1:
             $ CountWords = what.count(" ") if what.count(" ") <= 10 else 10
             $ CountWords = CountWords - what.count(".")
             $ what = ""
-            python: 
+            python:
                 while CountWords >= 0:
                     CountWords -= 1
-                    what = what + renpy.random.choice(["Mrph", 
-                                                    "Hrgaph",    
-                                                    "Rhgn",                       
-                                                    "Phar",                       
+                    what = what + renpy.random.choice(["Mrph",
+                                                    "Hrgaph",
+                                                    "Rhgn",
+                                                    "Phar",
                                                     "Geghs",
                                                     "Paha",
                                                     "Grde",
                                                     "Phraph",
-                                                    "Ugh"]) 
+                                                    "Ugh"])
                     if CountWords:
                         what = what + " "
                     else:
                         what = what + "."
         # End gag code
-        
+
         vbox:
             #Main chat text window
             pos (0.0,0.1) #(0.7,0.1)
             anchor (0.0,0.0)#(1.0,0.0)
-            
+
             style "say_two_window_vbox"
-             
-            window:   
-                style "say_balloon" 
+
+            window:
+                style "say_balloon"
 
                 has vbox:
-                    style "say_balloon"                  
+                    style "say_balloon"
                 text what id "what" color "#000000" font "CRIMFBRG.ttf" text_align 0.5
-              
+
             if who == "Rogue":
                     if R_SpriteLoc == StageRight or R_SpriteLoc == StageFarRight:
-                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85                        
+                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85
                     elif R_SpriteLoc == StageFarLeft:
                         add "arrow" xalign 0.1 #xzoom -1
                     else: #R_SpriteLoc == StageCenter, Left, etc.:
-                        add "arrow" xalign 0.8                        
-            elif who == "Kitty": 
+                        add "arrow" xalign 0.8
+            elif who == "Kitty":
                     if K_SpriteLoc == StageRight or K_SpriteLoc == StageFarRight:
-                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85                        
+                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85
                     elif K_SpriteLoc == StageFarLeft:
                         add "arrow" xalign 0.1 #xzoom -1
                     else: #K_SpriteLoc == StageCenter, Left, etc.:
-                        add "arrow" xalign 0.8   
-            elif who == "Emma": 
+                        add "arrow" xalign 0.8
+            elif who == "Emma":
                     if E_SpriteLoc == StageRight or E_SpriteLoc == StageFarRight:
-                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85                        
+                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85
                     elif E_SpriteLoc == StageFarLeft:
                         add "arrow" xalign 0.1 #xzoom -1
                     else: #E_SpriteLoc == StageCenter, Left, etc.:
-                        add "arrow" xalign 0.8   
-            elif who == EmmaName: 
+                        add "arrow" xalign 0.8
+            elif who == EmmaName:
                     if E_SpriteLoc == StageRight or E_SpriteLoc == StageFarRight:
-                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85                        
+                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85
                     elif E_SpriteLoc == StageFarLeft:
                         add "arrow" xalign 0.1 #xzoom -1
                     else: #E_SpriteLoc == StageCenter, Left, etc.:
-                        add "arrow" xalign 0.8   
-            elif who in ModdedGirls: 
+                        add "arrow" xalign 0.8
+            elif who in ModdedGirls:
                     if newgirl[who].SpriteLoc == StageRight or newgirl[who].SpriteLoc == StageFarRight:
-                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85                        
+                        add "arrow" rotate -90 xzoom -1 xpos 1.03 ypos -0.85
                     elif newgirl[who].SpriteLoc == StageFarLeft:
                         add "arrow" xalign 0.1 #xzoom -1
                     else: #E_SpriteLoc == StageCenter, Left, etc.:
-                        add "arrow" xalign 0.8        
+                        add "arrow" xalign 0.8
             elif who == Playername:
                     pass
-            elif who == "Professor X":                     
-                    add "arrow" xalign 0.8 
+            elif who == "Professor X":
+                    add "arrow" xalign 0.8
             elif who:
-                    add "arrow" xalign 0.8 
-                
+                    add "arrow" xalign 0.8
+
         if who:
             # this block is the name tag
-            window:         
+            window:
                     pos (0.1,0.07) #(0.65,0.07)
                     anchor (0.5,0)#(0.5,0.5)
                     style "say_who_window"
 
                     text who:
                         size 15
-                        id "who" 
-                        font "CRIMFBRG.ttf" 
-         
+                        id "who"
+                        font "CRIMFBRG.ttf"
+
     # Use the quick menu.
     use quick_menu
-    
-    
+
+
 image side arrow = "arrow"
 
 image arrow:
-    "images/Arrow.png"
+    +str(ui_loc)"/Arrow.png"
     ypos -17
-    xalign 0.5 #0.9  
+    xalign 0.5 #0.9
     zoom 1
     rotate 0
-    
+
 ##############################################################################
 # Choice
 #
@@ -158,7 +158,7 @@ image arrow:
 # http://www.renpy.org/doc/html/screen_special.html#choice
 
 screen choice(items):
-    
+
 
 
     window:
@@ -174,37 +174,37 @@ screen choice(items):
                 arrowkeys True
                 mousewheel True
                 draggable True
-        
+
                 side_yfill True
-    
+
                 vbox:
                     style "menu"
                     spacing 2
-        
+
                     for caption, action, chosen in items:
-        
+
                         if action:
                             if " (locked)" in caption:
                                 $ caption = caption.replace(" (locked)", "")
                                 button:
                                     action None
                                     style "menu_choice_button"
-                                    background "#424242"                           
+                                    background "#424242"
                                     text caption style "menu_choice" color "#6E6E6E"
-                                        
-        
-                                   
+
+
+
                             else:               #to fix, just make this the default of "if action"
                                 button:
                                     action action
                                     style "menu_choice_button"
-        
-                                    text caption style "menu_choice" 
-        
+
+                                    text caption style "menu_choice"
+
                         else:
                             text caption style "menu_caption"
-    
-        
+
+
 
 
 
@@ -300,7 +300,7 @@ screen main_menu():
 
     # The background of the main menu.
     window:
-        style "mm_root"        
+        style "mm_root"
     # The main menu buttons.
     frame:
         style_group "mm"
@@ -309,12 +309,12 @@ screen main_menu():
 
         has vbox
 
-        textbutton _("Start Game") action Start() 
+        textbutton _("Start Game") action Start()
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Help") action Help()
-        textbutton _("Disclaimer") action Show("Disclaimer_screen") #ui.callsinnewcontext("Disclaimer_screen_label")        
-        textbutton _("Patreon") action OpenURL("http://www.patreon.com/OniArtist")       
+        textbutton _("Disclaimer") action Show("Disclaimer_screen") #ui.callsinnewcontext("Disclaimer_screen_label")
+        textbutton _("Patreon") action OpenURL("http://www.patreon.com/OniArtist")
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
@@ -683,278 +683,278 @@ init -2:
 # My Bullshit
 #
 # This is the random crap I've added
-# 
+#
 
 #begin Roguebutton
 screen roguebutton:
 #    if True: #"Rogue" in Party or R_Loc == bg_current:
     imagebutton:
-        auto "images/Button_Rogue_%s.png" 
-        action ui.callsinnewcontext("RogueWardrobe") 
-        xpos 690 
+        auto +str(ui_loc)"/Button_Rogue_%s.png"
+        action ui.callsinnewcontext("RogueWardrobe")
+        xpos 690
         ypos 5
         focus_mask True
-   
+
 #end roguebutton
 
 #begin Statbutton
 screen statbutton:
 #    if True: #"Rogue" in Party or R_Loc == bg_current:
     imagebutton:
-        auto "images/Button_Rogue_%s.png" 
+        auto +str(ui_loc)"/Button_Rogue_%s.png"
         action ui.callsinnewcontext("RogueStats") #works
 #            action ui.callsinnewcontext("R_Wardrobe_screen_label")
-        xpos 730 
+        xpos 730
         ypos 5
         focus_mask True
-   
+
 #end statbutton
 
 #begin Statbutton
 screen Inventorybutton:
     imagebutton:
-        auto "images/UI_Backpack_%s.png" 
-        action Show("P_Inventory_screen") 
-        xpos 780 
+        auto +str(ui_loc)"/UI_Backpack_%s.png"
+        action Show("P_Inventory_screen")
+        xpos 780
         ypos 5
         focus_mask True
-   
+
 #end statbutton
 
 #Begin Status screen:
-        
+
 screen R_Status_screen:
-    
+
     default tt = Tooltip(" ")
-    
+
     #Rogue's Stats
     if Ch_Focus == "Rogue":
-        add "images/BarBackdrop_R.png"
-        frame:  
-            style_group "stat_bar" 
-            xminimum 130       
-            background None
-            has vbox     
-            hbox:
-                imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: [R_Love]")
-                bar range 100 value VariableValue("R_Love", 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
-            hbox:
-                imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: [R_Lust]")
-                bar range 100 value VariableValue("R_Lust", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+        add +str(ui_loc)"/BarBackdrop_R.png"
         frame:
+            style_group "stat_bar"
             xminimum 130
-            xpos 130    
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: [R_Obed]") #action NullAction("none")?
-                bar range 100 value VariableValue("R_Obed", 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlove.png" hover +str(ui_loc)"/iconlove.png" action NullAction() hovered tt.Action("Love: [R_Love]")
+                bar range 100 value VariableValue("R_Love", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [R_Addict]")
-                bar range 100 value VariableValue("R_Addict", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlust.png" hover +str(ui_loc)"/iconlust.png" action NullAction() hovered tt.Action("Lust: [R_Lust]")
+                bar range 100 value VariableValue("R_Lust", 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         frame:
             xminimum 130
-            xpos 260    
+            xpos 130
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [R_Inbt]")
-                bar range 100 value VariableValue("R_Inbt", 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconobed.png" hover +str(ui_loc)"/iconobed.png" action NullAction() hovered tt.Action("Obedience: [R_Obed]") #action NullAction("none")?
+                bar range 100 value VariableValue("R_Obed", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfullO.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiction Rate: [R_Addictionrate]")
-                bar range 100 value VariableValue("R_Addictionrate", 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconaddict.png" hover +str(ui_loc)"/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [R_Addict]")
+                bar range 100 value VariableValue("R_Addict", 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+        frame:
+            xminimum 130
+            xpos 260
+            background None
+            has vbox
+            hbox:
+                imagebutton idle +str(ui_loc)"/iconinbt.png" hover +str(ui_loc)"/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [R_Inbt]")
+                bar range 100 value VariableValue("R_Inbt", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfulli.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+            hbox:
+                imagebutton idle +str(ui_loc)"/iconaddictrate.png" hover +str(ui_loc)"/iconaddictrate.png" action NullAction() hovered tt.Action("Addiction Rate: [R_Addictionrate]")
+                bar range 100 value VariableValue("R_Addictionrate", 10) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         showif not Trigger:
-            imagebutton auto "images/Button_Rogue_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
+            imagebutton auto +str(ui_loc)"/Button_Rogue_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5
         showif config.developer:
-            imagebutton auto "images/Button_Rogue_%s.png" action ui.callsinnewcontext("RogueStats") xpos 730 ypos 5 focus
+            imagebutton auto +str(ui_loc)"/Button_Rogue_%s.png" action ui.callsinnewcontext("RogueStats") xpos 730 ypos 5 focus
 
-        
+
     #Kitty's stats
     elif Ch_Focus == "Kitty":
-        add "images/BarBackdrop_K.png"        
-        frame:  
-            style_group "stat_bar" 
-            xminimum 130       
-            background None
-            has vbox     
-            hbox:
-                imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: [K_Love]")
-                bar range 100 value VariableValue("K_Love", 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
-            hbox:
-                imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: [K_Lust]")
-                bar range 100 value VariableValue("K_Lust", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+        add +str(ui_loc)"/BarBackdrop_K.png"
         frame:
+            style_group "stat_bar"
             xminimum 130
-            xpos 130    
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: [K_Obed]")
-                bar range 100 value VariableValue("K_Obed", 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlove.png" hover +str(ui_loc)"/iconlove.png" action NullAction() hovered tt.Action("Love: [K_Love]")
+                bar range 100 value VariableValue("K_Love", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [K_Addict]")
-                bar range 100 value VariableValue("K_Addict", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlust.png" hover +str(ui_loc)"/iconlust.png" action NullAction() hovered tt.Action("Lust: [K_Lust]")
+                bar range 100 value VariableValue("K_Lust", 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         frame:
             xminimum 130
-            xpos 260    
+            xpos 130
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [K_Inbt]")
-                bar range 100 value VariableValue("K_Inbt", 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconobed.png" hover +str(ui_loc)"/iconobed.png" action NullAction() hovered tt.Action("Obedience: [K_Obed]")
+                bar range 100 value VariableValue("K_Obed", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfullO.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: [K_Addictionrate]")
-                bar range 100 value VariableValue("K_Addictionrate", 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconaddict.png" hover +str(ui_loc)"/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [K_Addict]")
+                bar range 100 value VariableValue("K_Addict", 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+        frame:
+            xminimum 130
+            xpos 260
+            background None
+            has vbox
+            hbox:
+                imagebutton idle +str(ui_loc)"/iconinbt.png" hover +str(ui_loc)"/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [K_Inbt]")
+                bar range 100 value VariableValue("K_Inbt", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfulli.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+            hbox:
+                imagebutton idle +str(ui_loc)"/iconaddictrate.png" hover +str(ui_loc)"/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: [K_Addictionrate]")
+                bar range 100 value VariableValue("K_Addictionrate", 10) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         showif not Trigger:
-            imagebutton auto "images/Button_Kitty_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
+            imagebutton auto +str(ui_loc)"/Button_Kitty_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5
         showif config.developer:
-            imagebutton auto "images/Button_Kitty_%s.png" action ui.callsinnewcontext("KittyStats") xpos 730 ypos 5 focus
+            imagebutton auto +str(ui_loc)"/Button_Kitty_%s.png" action ui.callsinnewcontext("KittyStats") xpos 730 ypos 5 focus
     #Emma's Stats
     elif Ch_Focus == "Emma":
-        add "images/BarBackdrop_E.png"
-        frame:  
-            style_group "stat_bar" 
-            xminimum 130       
-            background None
-            has vbox     
-            hbox:
-                imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: [E_Love]")
-                bar range 100 value VariableValue("E_Love", 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
-            hbox:
-                imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: [E_Lust]")
-                bar range 100 value VariableValue("E_Lust", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+        add +str(ui_loc)"/BarBackdrop_E.png"
         frame:
+            style_group "stat_bar"
             xminimum 130
-            xpos 130    
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: [E_Obed]") #action NullAction("none")?
-                bar range 100 value VariableValue("E_Obed", 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlove.png" hover +str(ui_loc)"/iconlove.png" action NullAction() hovered tt.Action("Love: [E_Love]")
+                bar range 100 value VariableValue("E_Love", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [E_Addict]")
-                bar range 100 value VariableValue("E_Addict", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlust.png" hover +str(ui_loc)"/iconlust.png" action NullAction() hovered tt.Action("Lust: [E_Lust]")
+                bar range 100 value VariableValue("E_Lust", 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         frame:
             xminimum 130
-            xpos 260    
+            xpos 130
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [E_Inbt]")
-                bar range 100 value VariableValue("E_Inbt", 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconobed.png" hover +str(ui_loc)"/iconobed.png" action NullAction() hovered tt.Action("Obedience: [E_Obed]") #action NullAction("none")?
+                bar range 100 value VariableValue("E_Obed", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfullO.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiction Rate: [E_Addictionrate]")
-                bar range 100 value VariableValue("E_Addictionrate", 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconaddict.png" hover +str(ui_loc)"/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [E_Addict]")
+                bar range 100 value VariableValue("E_Addict", 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+        frame:
+            xminimum 130
+            xpos 260
+            background None
+            has vbox
+            hbox:
+                imagebutton idle +str(ui_loc)"/iconinbt.png" hover +str(ui_loc)"/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [E_Inbt]")
+                bar range 100 value VariableValue("E_Inbt", 1000) xmaximum 100 left_bar +str(ui_loc)"/barfulli.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+            hbox:
+                imagebutton idle +str(ui_loc)"/iconaddictrate.png" hover +str(ui_loc)"/iconaddictrate.png" action NullAction() hovered tt.Action("Addiction Rate: [E_Addictionrate]")
+                bar range 100 value VariableValue("E_Addictionrate", 10) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         showif not Trigger:
-            imagebutton auto "images/Button_Emma_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
+            imagebutton auto +str(ui_loc)"/Button_Emma_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5
         showif config.developer:
-            imagebutton auto "images/Button_Emma_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
-                            
+            imagebutton auto +str(ui_loc)"/Button_Emma_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
+
     elif Ch_Focus == "Mystique":
-        add "images/BarBackdrop_M.png"
-        frame:  
-            style_group "stat_bar" 
-            xminimum 130       
+        add +str(ui_loc)"/BarBackdrop_M.png"
+        frame:
+            style_group "stat_bar"
+            xminimum 130
             background None
-            has vbox     
+            has vbox
             hbox:
-                imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: " + str(newgirl["Mystique"].Love))
-                bar range 100 value VariableValue2("Love", Ch_Focus, 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
+                imagebutton idle +str(ui_loc)"/iconlove.png" hover +str(ui_loc)"/iconlove.png" action NullAction() hovered tt.Action("Love: " + str(newgirl["Mystique"].Love))
+                bar range 100 value VariableValue2("Love", Ch_Focus, 1000) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: " + str(newgirl["Mystique"].Lust))
-                bar range 100 value VariableValue2("Lust", Ch_Focus, 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlust.png" hover +str(ui_loc)"/iconlust.png" action NullAction() hovered tt.Action("Lust: " + str(newgirl["Mystique"].Lust))
+                bar range 100 value VariableValue2("Lust", Ch_Focus, 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
 
         frame:
             xminimum 130
-            xpos 130    
+            xpos 130
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: " + str(newgirl["Mystique"].Obed))
-                bar range 100 value VariableValue2("Obed", Ch_Focus, 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconobed.png" hover +str(ui_loc)"/iconobed.png" action NullAction() hovered tt.Action("Obedience: " + str(newgirl["Mystique"].Obed))
+                bar range 100 value VariableValue2("Obed", Ch_Focus, 1000) xmaximum 100 left_bar +str(ui_loc)"/barfullO.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: " + str(newgirl["Mystique"].Addict))
-                bar range 100 value VariableValue2("Addict", Ch_Focus, 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconaddict.png" hover +str(ui_loc)"/iconaddict.png" action NullAction() hovered tt.Action("Addiction: " + str(newgirl["Mystique"].Addict))
+                bar range 100 value VariableValue2("Addict", Ch_Focus, 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
         frame:
             xminimum 130
-            xpos 260    
+            xpos 260
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: " + str(newgirl["Mystique"].Inbt))
-                bar range 100 value VariableValue2("Inbt", Ch_Focus, 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconinbt.png" hover +str(ui_loc)"/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: " + str(newgirl["Mystique"].Inbt))
+                bar range 100 value VariableValue2("Inbt", Ch_Focus, 1000) xmaximum 100 left_bar +str(ui_loc)"/barfulli.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: " + str(newgirl["Mystique"].Addictionrate))
-                bar range 100 value VariableValue2("Addictionrate", Ch_Focus, 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconaddictrate.png" hover +str(ui_loc)"/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: " + str(newgirl["Mystique"].Addictionrate))
+                bar range 100 value VariableValue2("Addictionrate", Ch_Focus, 10) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         showif not Trigger:
-            imagebutton auto "images/Button_Mystique_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
+            imagebutton auto +str(ui_loc)"/Button_Mystique_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5
         showif config.developer: #nothing here
-            imagebutton auto "images/Button_Mystique_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
+            imagebutton auto +str(ui_loc)"/Button_Mystique_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
 
     elif Ch_Focus == "Laura":
-        add "images/BarBackdrop_L.png"
-        frame:  
-            style_group "stat_bar" 
-            xminimum 130       
+        add +str(ui_loc)"/BarBackdrop_L.png"
+        frame:
+            style_group "stat_bar"
+            xminimum 130
             background None
-            has vbox     
+            has vbox
             hbox:
-                imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: " + str(newgirl["Laura"].Love))
-                bar range 100 value VariableValue2("Love", Ch_Focus, 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
+                imagebutton idle +str(ui_loc)"/iconlove.png" hover +str(ui_loc)"/iconlove.png" action NullAction() hovered tt.Action("Love: " + str(newgirl["Laura"].Love))
+                bar range 100 value VariableValue2("Love", Ch_Focus, 1000) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: " + str(newgirl["Laura"].Lust))
-                bar range 100 value VariableValue2("Lust", Ch_Focus, 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconlust.png" hover +str(ui_loc)"/iconlust.png" action NullAction() hovered tt.Action("Lust: " + str(newgirl["Laura"].Lust))
+                bar range 100 value VariableValue2("Lust", Ch_Focus, 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
 
         frame:
             xminimum 130
-            xpos 130    
+            xpos 130
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: " + str(newgirl["Laura"].Obed))
-                bar range 100 value VariableValue2("Obed", Ch_Focus, 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconobed.png" hover +str(ui_loc)"/iconobed.png" action NullAction() hovered tt.Action("Obedience: " + str(newgirl["Laura"].Obed))
+                bar range 100 value VariableValue2("Obed", Ch_Focus, 1000) xmaximum 100 left_bar +str(ui_loc)"/barfullO.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: " + str(newgirl["Laura"].Addict))
-                bar range 100 value VariableValue2("Addict", Ch_Focus, 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                imagebutton idle +str(ui_loc)"/iconaddict.png" hover +str(ui_loc)"/iconaddict.png" action NullAction() hovered tt.Action("Addiction: " + str(newgirl["Laura"].Addict))
+                bar range 100 value VariableValue2("Addict", Ch_Focus, 100) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
         frame:
             xminimum 130
-            xpos 260    
+            xpos 260
             background None
             has vbox
             hbox:
-                imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: " + str(newgirl["Laura"].Inbt))
-                bar range 100 value VariableValue2("Inbt", Ch_Focus, 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconinbt.png" hover +str(ui_loc)"/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: " + str(newgirl["Laura"].Inbt))
+                bar range 100 value VariableValue2("Inbt", Ch_Focus, 1000) xmaximum 100 left_bar +str(ui_loc)"/barfulli.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
-                imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: " + str(newgirl["Laura"].Addictionrate))
-                bar range 100 value VariableValue2("Addictionrate", Ch_Focus, 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                imagebutton idle +str(ui_loc)"/iconaddictrate.png" hover +str(ui_loc)"/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: " + str(newgirl["Laura"].Addictionrate))
+                bar range 100 value VariableValue2("Addictionrate", Ch_Focus, 10) xmaximum 100 left_bar +str(ui_loc)"/barfull.png" right_bar +str(ui_loc)"/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         showif not Trigger:
-            imagebutton auto "images/Button_Laura_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
+            imagebutton auto +str(ui_loc)"/Button_Laura_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5
         showif config.developer: #nothing here
-            imagebutton auto "images/Button_Laura_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
-                            
+            imagebutton auto +str(ui_loc)"/Button_Laura_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
+
     frame:
         #Focus meter (dick)
         xminimum 130
-        xpos 390    
+        xpos 390
         background None
         has vbox
-        hbox:            
-            bar range 100 value VariableValue("P_Focus", 100) xmaximum 100 left_bar "images/barfullP.png" right_bar "images/baremptyP.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
         hbox:
-            bar range 100 value VariableValue("P_Semen", 5) xmaximum 100 left_bar "images/barfullS.png" right_bar "images/baremptyS.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
-        imagebutton auto "images/Button_Emma_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
+            bar range 100 value VariableValue("P_Focus", 100) xmaximum 100 left_bar +str(ui_loc)"/barfullP.png" right_bar +str(ui_loc)"/baremptyP.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+        hbox:
+            bar range 100 value VariableValue("P_Semen", 5) xmaximum 100 left_bar +str(ui_loc)"/barfullS.png" right_bar +str(ui_loc)"/baremptyS.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+        imagebutton auto +str(ui_loc)"/Button_Emma_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
 
     frame:
         # Money and level
         xminimum 75
-        xpos 500 
-        ypos -5   
+        xpos 500
+        ypos -5
         background None
         has vbox
-        hbox:            
+        hbox:
             text "Money: $[P_Cash]" size 12
         hbox:
-            text "Level: [P_Lvl]" size 12 
+            text "Level: [P_Lvl]" size 12
         if Ch_Focus == 'Emma':
             hbox:
                 text "Actions Left: [E_Action]" size 12
@@ -981,86 +981,86 @@ screen R_Status_screen:
             hbox:
                 text "Forced: [newgirl[Laura].ForcedCount]" size 12
         # this block is the name tag
-        window:         
+        window:
             pos (90,-40)#(-15,-8)
             anchor (0,0)
             style "say_who_window"
             if Ch_Focus == "Mystique":
-                text "Raven" size 12 font "CRIMFBRG.ttf" color "#000000" #id "Ch_Focus"  
+                text "Raven" size 12 font "CRIMFBRG.ttf" color "#000000" #id "Ch_Focus"
             elif Ch_Focus == "Laura":
-                text newgirl[Ch_Focus].GirlName size 12 font "CRIMFBRG.ttf" color "#000000" #id "Ch_Focus"            
+                text newgirl[Ch_Focus].GirlName size 12 font "CRIMFBRG.ttf" color "#000000" #id "Ch_Focus"
             else:
-                text "[Ch_Focus]" size 12 font "CRIMFBRG.ttf" color "#000000" #id "Ch_Focus"            
-            
+                text "[Ch_Focus]" size 12 font "CRIMFBRG.ttf" color "#000000" #id "Ch_Focus"
+
 #    frame:
-#        xpos 900  
+#        xpos 900
 #        ypos 20
 #        background None
 #        imagebutton idle "CircleTest" hover "CircleTest" action NullAction() hovered tt.Action("Time Left: [Round]%")
-        
-        
+
+
     frame:
         #Clock test.
-        xpos 900  
+        xpos 900
         ypos 20
         background None
 
-        add "images/Clockbase.png":
+        add +str(ui_loc)"/Clockbase.png":
             anchor (0.5,0.5)
             yzoom -1
             subpixel True
 
         if Round < 50:
-            add "images/Clockred.png" at rotate_red(Round):
+            add +str(ui_loc)"/Clockred.png" at rotate_red(Round):
                 anchor (0.5,0.5)
                 subpixel True
         else:
-            add "images/Clockwhite.png" at rotate_white(Round):
+            add +str(ui_loc)"/Clockwhite.png" at rotate_white(Round):
                 anchor (0.5,0.5)
                 subpixel True
 
-#        add "images/Clockface.png":
+#        add +str(ui_loc)"/Clockface.png":
 #            anchor (0.5,0.5)
-        imagebutton idle "images/Clockface.png" hover "images/Clockface.png" action NullAction() hovered tt.Action("Time Left: [Round]%") anchor (0.5,0.5)
-            
+        imagebutton idle +str(ui_loc)"/Clockface.png" hover +str(ui_loc)"/Clockface.png" action NullAction() hovered tt.Action("Time Left: [Round]%") anchor (0.5,0.5)
+
     frame:
         # Date and time
         xminimum 130
-        xpos 920    
+        xpos 920
         background None
         has vbox
-        hbox:            
+        hbox:
             text "Day: [Day] [DayofWeek]" size 12
-        hbox:            
+        hbox:
             text "Time: [Current_Time]" size 12
-    
+
     if tt.value != " ":
         # Pop-up mouse-over labels
         frame :
             xpos 500 ypos 60
             has vbox:
-                text tt.value 
+                text tt.value
 
 screen Test_Focus_Map:
-    imagebutton auto "images/Button_X_%s.png" action Hide("Test_Focus_Map") xpos 690 ypos 5 focus_mask True
-    frame:            
-        xpos 684 
+    imagebutton auto +str(ui_loc)"/Button_X_%s.png" action Hide("Test_Focus_Map") xpos 690 ypos 5 focus_mask True
+    frame:
+        xpos 684
         ypos 44
         hbox:
             vbox:
-                imagebutton auto "images/Button_Rogue_%s.png" action ui.callsinnewcontext("Shift_Focus", "Rogue") focus_mask True
+                imagebutton auto +str(ui_loc)"/Button_Rogue_%s.png" action ui.callsinnewcontext("Shift_Focus", "Rogue") focus_mask True
                 if "met" in K_History:
-                    imagebutton auto "images/Button_Kitty_%s.png" action ui.callsinnewcontext("Shift_Focus", "Kitty") focus_mask True
-                 
+                    imagebutton auto +str(ui_loc)"/Button_Kitty_%s.png" action ui.callsinnewcontext("Shift_Focus", "Kitty") focus_mask True
+
             vbox:
                 if "met" in E_History:
-                    imagebutton auto "images/Button_Emma_%s.png" action ui.callsinnewcontext("Shift_Focus", "Emma") focus_mask True
+                    imagebutton auto +str(ui_loc)"/Button_Emma_%s.png" action ui.callsinnewcontext("Shift_Focus", "Emma") focus_mask True
                 if "met" in newgirl["Laura"].History:
-                    imagebutton auto "images/Button_Laura_%s.png" action ui.callsinnewcontext("Shift_Focus", "Laura") focus_mask True
+                    imagebutton auto +str(ui_loc)"/Button_Laura_%s.png" action ui.callsinnewcontext("Shift_Focus", "Laura") focus_mask True
 
             vbox:
                 if "met" in newgirl["Mystique"].History:
-                    imagebutton auto "images/Button_Mystique_%s.png" action ui.callsinnewcontext("Shift_Focus", "Mystique") focus_mask True
+                    imagebutton auto +str(ui_loc)"/Button_Mystique_%s.png" action ui.callsinnewcontext("Shift_Focus", "Mystique") focus_mask True
 
 
 transform rotate_white(x):
@@ -1070,16 +1070,16 @@ transform rotate_red(x):
     rotate -(int(x *3.6-180))
 
 # Bar styling
-#init -1 python: 
+#init -1 python:
 #    Styling for the bar sliders:
 #        style.stat_frame.background = None
 #        style.stat_bar.left_bar = "barfull.png"
 #        style.stat_bar.right_bar = "barempty.png"
 #        style.stat_bar.thumb = None
 #        style.stat_slider.xmaximum = 100
-#        style.stat_slider.ymaximum = 20 
-    
-    
+#        style.stat_slider.ymaximum = 20
+
+
 #Begin Wardobe screen:
 
 #screen R_Wardrobe_screen:
@@ -1094,7 +1094,7 @@ transform rotate_red(x):
 
 ##        showif Rogue_Arms == 2:
 ##            textbutton "Arms 1" action SetVariable(Rogue_Arms, 1)
-##        showif Rogue_Arms == 1:    
+##        showif Rogue_Arms == 1:
 ##            textbutton "Arms 2" action SetVariable(Rogue_Arms, "2")
 #    frame:
 #        xpos 10
@@ -1106,25 +1106,25 @@ transform rotate_red(x):
 #    call screen R_Wardrobe_screen
 #    return
 
-#label Screen_ToggleArms:    
+#label Screen_ToggleArms:
 #    if Rogue_Arms == 1:
 #        $ Rogue_Arms = 2
 #    else:
 #        $ Rogue_Arms = 1
 #    return
-  
+
 #end wardrobe
 
 
 
-screen P_Inventory_screen: 
+screen P_Inventory_screen:
     frame:
         xminimum 200
         xpos 700
         ypos 75
         has vbox
-        
-#        hbox:    
+
+#        hbox:
         text "Inventory:" size 20
         if CheatsEnabled:
             textbutton "Disable Cheats" text_size 15 action [ SetVariable("CheatsEnabled", 0)]
@@ -1173,7 +1173,7 @@ screen P_Inventory_screen:
             textbutton "X stop bothering Emma" text_size 15 action [ SetVariable("E_Rules", 0)]
         showif "dildo" in P_Inventory:
             $ Inventory_Count = Inventory_Check("dildo")
-            text "Dildos: [Inventory_Count]" size 15        
+            text "Dildos: [Inventory_Count]" size 15
         showif "vibrator" in P_Inventory:
             $ Inventory_Count = Inventory_Check("vibrator")
             text "Vibrators: [Inventory_Count]" size 15
@@ -1184,13 +1184,13 @@ screen P_Inventory_screen:
         showif "Avengers Tower Penthouse" in P_Inventory:
             text "Avengers Tower Penthouse" size 15
         showif "Xavier's photo" in P_Inventory:
-            text "Xavier's Photo" size 15    
+            text "Xavier's Photo" size 15
         showif "lace bra" in P_Inventory:
-            text "Lace Bra" size 15          
+            text "Lace Bra" size 15
         showif "lace panties" in P_Inventory:
-            text "Lace Panties" size 15    
+            text "Lace Panties" size 15
         showif "nighty" in P_Inventory:
-            text "Green Nighty" size 15    
+            text "Green Nighty" size 15
         showif "Mandrill Cologne" in P_Inventory:
             $ Inventory_Count = Inventory_Check("Mandrill Cologne")
             textbutton "Mandrill Cologne: [Inventory_Count] doses" action ui.callsinnewcontext("MandrillScreen") text_size 15
@@ -1201,25 +1201,25 @@ screen P_Inventory_screen:
             $ Inventory_Count = Inventory_Check("Corruption Cologne")
             textbutton "Corruption Cologne: [Inventory_Count] doses" action ui.callsinnewcontext("CorruptionScreen") text_size 15
         showif "Xavier" in Keys:
-            text "Xavier's Key" size 15    
+            text "Xavier's Key" size 15
         showif "Rogue" in Keys:
-            text "Rogue's Key" size 15    
+            text "Rogue's Key" size 15
         showif "Kitty" in Keys:
-            text "Kitty's Key" size 15    
-            
-        
+            text "Kitty's Key" size 15
+
+
     imagebutton:
-        auto "images/UI_Backpack_%s.png" 
-        action Hide("P_Inventory_screen") 
-        xpos 780 
+        auto +str(ui_loc)"/UI_Backpack_%s.png" 
+        action Hide("P_Inventory_screen")
+        xpos 780
         ypos 5
         focus_mask True
 
-   
-label MandrillScreen:    
+
+label MandrillScreen:
     if "mandrill" in P_Traits:
         "You already have this on."
-        return                
+        return
     if "purple" in P_Traits or "corruption" in P_Traits:
         "You'll confuse the scent you already have on."
         return
@@ -1230,16 +1230,16 @@ label MandrillScreen:
         "Use it now?"
         "Yes":
             $ P_Traits.append("mandrill")
-            $ P_Inventory.remove("Mandrill Cologne")     
+            $ P_Inventory.remove("Mandrill Cologne")
         "No":
             pass
-             
-    return   
-   
-label PurpleRainScreen:   
+
+    return
+
+label PurpleRainScreen:
     if "purple" in P_Traits:
         "You already have this on."
-        return                
+        return
     if "mandrill" in P_Traits or "corruption" in P_Traits:
         "You'll confuse the scent you already have on."
         return
@@ -1250,15 +1250,15 @@ label PurpleRainScreen:
         "Use it now?"
         "Yes":
             $ P_Traits.append("purple")
-            $ P_Inventory.remove("Purple Rain Cologne") 
+            $ P_Inventory.remove("Purple Rain Cologne")
         "No":
             pass
     return
-    
-label CorruptionScreen: 
+
+label CorruptionScreen:
     if "corruption" in P_Traits:
         "You already have this on."
-        return                
+        return
     if "purple" in P_Traits or "mandrill" in P_Traits:
         "You'll confuse the scent you already have on."
         return
@@ -1267,12 +1267,12 @@ label CorruptionScreen:
     "Product warning, any Inhibition lost whie under the effects may be regained when this wears off, if the limits are reached."
     menu:
         "Use it now?"
-        "Yes":            
+        "Yes":
             $ P_Traits.append("corruption")
-            $ P_Inventory.remove("Corruption Cologne")                      
+            $ P_Inventory.remove("Corruption Cologne")
         "No":
-            pass  
-    return                            
+            pass
+    return
 #Begin Disclaimer screen:
 
 screen Disclaimer_screen:
@@ -1283,11 +1283,11 @@ screen Disclaimer_screen:
         ypos 100
         xmaximum 800
         has vbox
-        text "This is a work of parody fiction. It is intended to be distributed through Hentai United and Oniartist's Patreon page, please do not redistribute through other sources." 
+        text "This is a work of parody fiction. It is intended to be distributed through Hentai United and Oniartist's Patreon page, please do not redistribute through other sources."
         text " "
-        text "As is noted in the game, this story takes place several years after the last episode of the TV series it is based on, and all characters involved are over the age of 18. The game references events of the TV series, but is not beholden to the canon of the series, and characters will behave differently or have different backstories." 
+        text "As is noted in the game, this story takes place several years after the last episode of the TV series it is based on, and all characters involved are over the age of 18. The game references events of the TV series, but is not beholden to the canon of the series, and characters will behave differently or have different backstories."
         text " "
-        text "I would like to thank Akabur for his help getting started with all this (definitely check out his games too), and the various documentation on the Renpy site for pointing me in the right directions. I've had a lot of fun coding this game, and look forward to continually improving on it. If you'd like to support my efforts, please sign up under my name at Hentai United, or join on to my Patreon page. I have some huge ambitions for where this project will end up." 
+        text "I would like to thank Akabur for his help getting started with all this (definitely check out his games too), and the various documentation on the Renpy site for pointing me in the right directions. I've had a lot of fun coding this game, and look forward to continually improving on it. If you'd like to support my efforts, please sign up under my name at Hentai United, or join on to my Patreon page. I have some huge ambitions for where this project will end up."
         text " "
         text "{a=http://oni.hentaiunited.com/}http://oni.hentaiunited.com{/a}"
         text "{a=http://www.patreon.com/OniArtist}http://www.patreon.com/OniArtist{/a}"
@@ -1299,8 +1299,7 @@ screen Disclaimer_screen:
         #textbutton "Return" action Return()
         textbutton "Return" action Hide("Disclaimer_screen")
 
-#label Disclaimer_screen_label:    
+#label Disclaimer_screen_label:
 #    call screen Disclaimer_screen
 #    return
-#end Disclaimer  
-
+#end Disclaimer
