@@ -4,9 +4,11 @@
 *.rpyb
 *.rpyc
 *.save
-saves/persistent
 *.mp3
 *.wav
 *.db
 
 game/images/
+game/saves/
+images/
+saves/
