@@ -71,12 +71,12 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "images/titleimage.jpg",
+        mm_root = "images/titleimage_new.jpg",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        gm_root = "images/menuimage.jpg",
+        gm_root = +str(ui_loc)"/menuimage.jpg",
 
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
@@ -96,7 +96,7 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    style.window.background = Frame("images/chatbox.png", 12, 12)
+    style.window.background = Frame(+str(ui_loc)"/chatbox.png", 12, 12)
 
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
@@ -115,24 +115,24 @@ init -1 python hide:
     style.window.bottom_padding = 25
     style.window.xminimum = 5
     style.window.yminimum = 5
-    
+
     style.window.xmaximum = 500 #mine
 
     ## This is the minimum height of the window, including the margins
     ## and padding.
 
     # style.window.yminimum = 250
-    
-    style.say_who_window.background = Frame("images/Nametag.png", 20,20) #namebox.png
+
+    style.say_who_window.background = Frame(+str(ui_loc)"/Nametag.png", 20,20) #namebox.png
     style.say_who_window.xalign = 0.05
     style.say_who_window.yalign = -100
     style.say_who_window.xminimum = 50
 #    style.say_who_window.yoffset = -150
-    style.say_who_window.left_padding = 10 
+    style.say_who_window.left_padding = 10
     style.say_who_window.right_padding = 10
     style.say_who_window.top_padding = 10
     style.say_who_window.bottom_padding = 10
-    
+
 #    style My word balloons
 
 # I tried putting the block below in the Options rpy, did not work:
@@ -141,22 +141,22 @@ init -1 python hide:
 
 # I tried this block below, did not work:
     style.say_balloon = Style(style.default)
-    style.say_balloon.background = Frame("images/Wordballoon.png", 50, 50)    
+    style.say_balloon.background = Frame(+str(ui_loc)"/Wordballoon.png", 50, 50)
     style.say_balloon.left_padding = 25
     style.say_balloon.right_padding = 25
     style.say_balloon.top_padding = 25
     style.say_balloon.bottom_padding = 25
-    style.say_balloon.yminimum = 0              #50                
+    style.say_balloon.yminimum = 0              #50
     style.say_balloon.xminimum = 100
     style.say_balloon.xmaximum = 450 #mine
     style.say_balloon.font = "ltromatic.ttf"
-    
+
     style.textbox = Style(style.default)
-    style.textbox.background = Frame("images/chatbox.png", 12, 12)
+    style.textbox.background = Frame(+str(ui_loc)"/chatbox.png", 12, 12)
     style.textbox.padding = (25,25)
     style.textbox.xminimum = 100
     style.textbox.xmaximum = 450
-    
+
     #########################################
     ## This lets you change the placement of the main menu.
 
@@ -176,7 +176,7 @@ init -1 python hide:
     # style.mm_menu_frame.ypos = 0.75
     # style.mm_menu_frame.yanchor = 0.5
 
- 
+
 
     #########################################
     ## These let you customize the default font used for text in Ren'Py.
@@ -185,11 +185,11 @@ init -1 python hide:
 
     # style.default.font = "DejaVuSans.ttf"
     style.default.font = "dungeon.ttf"
-#    style.default.font = "CRIMFBRG.ttf"    
+#    style.default.font = "CRIMFBRG.ttf"
     ## The default size of text.
 
     style.default.size = 18
-    
+
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
 
@@ -325,7 +325,7 @@ init -1 python hide:
 
     #########################################
     ## More customizations can go here.
-    
+
 
 
 ## This section contains information about how to build your project into
@@ -393,7 +393,7 @@ init python:
 
     build.documentation('*.html')
     build.documentation('*.txt')
-    
+
 # My junk
     config.layers = [ 'backdrop', 'master', 'nightmask', 'black', 'transient', 'screens', 'overlay' ]
     #config.layers = [ 'master', 'nightmask', 'black', 'transient', 'screens', 'overlay' ] #what it was before I messed with it.
